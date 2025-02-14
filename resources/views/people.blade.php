@@ -11,7 +11,6 @@
                 <div class="p-6 text-gray-900">
                     @if (! Auth::user()->is_admin)
 
-
                         @if (count($users) > 0)
                             <div class="mb-4 font-bold text-lg text-green-600">
                                 <div class="grid grid-cols-2 gap-4">

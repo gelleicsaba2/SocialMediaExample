@@ -16,7 +16,6 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     @foreach ($friends as $friend)
 
-
                                             <div class="flex">
 
                                                 <div
@@ -41,7 +40,6 @@
                                 {{ __('No friends found!') }}
                             </div>
                         @endif
-
 
                     @endif
                 </div>

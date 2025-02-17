@@ -33,7 +33,7 @@ changed the .env host/port etc...)
 
 The project code created with Breeze (starter kit), and the email confirmation is disabled.
 
-* Default users
+* Default users:
     * Admin User (admin role)
         * Email: admin@example.com
         * Password: 11111111
@@ -43,5 +43,6 @@ The project code created with Breeze (starter kit), and the email confirmation i
     * John Deer
         * Email: john@example.com
         * Password: 33333333
-    * (The other random test users)
-        * Password: password
+
+* (The other random test users)
+    * Password: password

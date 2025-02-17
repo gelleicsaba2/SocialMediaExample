@@ -25,10 +25,12 @@
                                                     {{ $user->name }}
                                                 </div>
                                                 <div class="flex-none mb-4 font-bold text-lg text-green-600">
-                                                    <x-primary-button class="ms-3"
-                                                        onclick="location.href='{{ route('people.mark', ['friend_id' => $user->id] ) }}'">
-                                                        {{ __('MARK AS FRIEND') }}
-                                                    </x-primary-button>
+                                                    @if ($user->markable)
+                                                        <x-primary-button class="ms-3"
+                                                            onclick="location.href='{{ route('people.mark', ['friend_id' => $user->id] ) }}'">
+                                                            {{ __('MARK AS FRIEND') }}
+                                                        </x-primary-button>
+                                                    @endif
                                                 </div>
 
                                             </div>

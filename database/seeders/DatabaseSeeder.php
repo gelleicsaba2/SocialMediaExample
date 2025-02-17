@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Relation;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\TestDataSeeder;
 
 
 class DatabaseSeeder extends Seeder
@@ -41,6 +42,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => null, // Mark the email as verified
         ]);
 
+        $this->call([
+            TestDataSeeder::class,
+        ]);
 
 
     }

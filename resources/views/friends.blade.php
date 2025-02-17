@@ -21,11 +21,11 @@
                                                 <div
                                                     class="flex-none mb-4 font-bold text-lg text-green-600"
                                                     style="min-width: 200px;">
-                                                    {{ $friend->friend_name }}
+                                                    {{ $friend->name }}
                                                 </div>
                                                 <div class="flex-none mb-4 font-bold text-lg text-green-600">
                                                     <x-primary-button class="ms-3"
-                                                        onclick="location.href='{{ route('view', ['friend_id' => $friend->friend_id ]) }}'">
+                                                        onclick="location.href='{{ route('view', ['friend_id' => $friend->id ]) }}'">
                                                         {{ __('VIEW') }}
                                                     </x-primary-button>
                                                 </div>

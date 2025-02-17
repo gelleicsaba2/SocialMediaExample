@@ -24,7 +24,6 @@ class TestDataSeeder extends Seeder
 
         // create faker users
         User::factory(16)->create();
-
         DB::statement('UPDATE users SET email_verified_at = NULL WHERE id > 3');
     }
 }

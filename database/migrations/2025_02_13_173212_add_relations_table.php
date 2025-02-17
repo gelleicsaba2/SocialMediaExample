@@ -17,6 +17,10 @@ return new class extends Migration
             $table->bigInteger('friend_id')->unsigned();
             $table->boolean('accepted')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('friend_id')->references('id')->on('users');
+            $table->index(['accepted']);
         });
     }
 

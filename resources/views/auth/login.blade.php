@@ -39,6 +39,11 @@
                 </a>
             @endif --}}
 
+            <div style="margin-right: 10px;" class="mr-3">
+                <a href="/">
+                    {{ __('Back') }}</a>
+            </div>
+
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>

@@ -25,6 +25,9 @@ class RelationController extends Controller
     {
         $userId = Auth::user()->id;
         $friendId = $request->query('friend_id');
+        if ($this->relationService->checkFriendsRow($userId, $friendId)) {
+            abort(403, 'Forbidden');
+        }
         $this->relationService->markAsFriend($userId, $friendId);
         $this->relationService->sendNotification($friendId, Auth::user()->id,
             'You have been marked by '.Auth::user()->name.'.');

@@ -63,6 +63,9 @@
                                 <div style="margin-bottom: 60px">@include('components/application-logo')</div>
                                 <h1 class="text-4xl font-medium leading-5">Welcome to Social media App</h1>
                                 <p class="mt-4 text-sm leading-5 text-gray-500">Social media app sample.</p>
+                                @if ($message)
+                                    <p class="mt-4 text-2xl leading-5 text-green-600">{{__($message)}}</p>
+                                @endif
                             </div>
                         {{-- </div> --}}
                     </main>

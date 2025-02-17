@@ -30,7 +30,7 @@
                                     <a href="{{ route('friends') }}" class="ms-3"
                                         class="text-blue-600 hover:text-blue-400 decoration-solid"
                                         style="text-decoration: underline; ">
-                                        {{ __('back') }}
+                                        {{ __('Back') }}
                                     </a>
                                 </div>
 

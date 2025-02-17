@@ -62,17 +62,18 @@
                                             <div
                                                 class="flex-none mb-4 font-bold text-lg text-green-600"
                                                 style="min-width: 270px;">
-                                                {{ $acceptableFriend->user_name  }}<br>
+                                                {{ $acceptableFriend->user->name  }}<br>
                                             </div>
                                             <div class="flex-none mb-4 font-bold text-lg text-green-600">
                                                 <x-primary-button class="ms-3" style="min-height: 40px"
-                                                    onclick="location.href='{{ route('accept', [ 'friend_id' => $acceptableFriend->user_id] ) }}'">
+                                                    onclick="location.href='{{ route('accept', ['friend_id' => $acceptableFriend->user_id] ) }}'">
                                                     {{ __('ACCEPT') }}
                                                 </x-primary-button>
                                                 <x-primary-button class="ms-3" style="min-height: 40px"
-                                                    onclick="location.href='{{ route('refuse', [ 'friend_id' => $acceptableFriend->user_id] ) }}'">
+                                                    onclick="location.href='{{ route('refuse', ['friend_id' => $acceptableFriend->user_id] ) }}'">
                                                     {{ __('REFUSE') }}
                                                 </x-primary-button>
+
                                             </div>
 
                                         </div>

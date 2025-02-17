@@ -32,3 +32,16 @@ View the http://127.0.0.1:8000/ in the browser (, or http://yourdomain:port if y
 changed the .env host/port etc...)
 
 The project code created with Breeze (starter kit), and the email confirmation is disabled.
+
+* Default users
+    * Admin User (admin role)
+        * Email: admin@example.com
+        * Password: 11111111
+    * Test User
+        * Email: test@example.com
+        * Password: 22222222
+    * John Deer
+        * Email: john@example.com
+        * Password: 33333333
+    * (The other random test users)
+        * Password: password

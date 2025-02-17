@@ -55,6 +55,9 @@ class DashboardController extends Controller
     {
         $user_id = Auth::user()->id;
         $friend_id = $request->query('friend_id');
+        if (! $this->relationService->checkFriends($user_id, $friend_id, 0)) {
+            abort(403, 'Forbidden');
+        }
         $this->relationService->accept($friend_id, $user_id);
         $this->relationService->sendNotification($friend_id, Auth::user()->id,
             'You have been accepted by '.Auth::user()->name.'.');
@@ -65,6 +68,9 @@ class DashboardController extends Controller
     {
         $user_id = Auth::user()->id;
         $friend_id = $request->query('friend_id');
+        if (! $this->relationService->checkFriends($user_id, $friend_id, 0)) {
+            abort(403, 'Forbidden');
+        }
         $this->relationService->refuse($friend_id, $user_id);
         $this->relationService->sendNotification($friend_id, Auth::user()->id,
             'You have been refused by '.Auth::user()->name.'.');

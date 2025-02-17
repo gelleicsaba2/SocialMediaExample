@@ -27,6 +27,9 @@ class FriendsController extends Controller
     {
         $userId = Auth::user()->id;
         $friendId = $request->query('friend_id');
+        if (! $this->relationService->checkFriends($userId, $friendId)) {
+            abort(403, 'Forbidden');
+        }
         $friend = User::where('id', $friendId)->first();
         return view('view')->with(['friend' => $friend]);
     }
@@ -35,6 +38,9 @@ class FriendsController extends Controller
     {
         $userId = Auth::user()->id;
         $friendId = $request->query('friend_id');
+        if (! $this->relationService->checkFriends($userId, $friendId)) {
+            abort(403, 'Forbidden');
+        }
         $this->relationService->delete($userId, $friendId);
         return redirect('friends');
     }

@@ -15,7 +15,7 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! auth()->check() || auth()->user()->is_admin) {
+        if (! auth()->check() || auth()->user()->is_admin || auth()->user()->email_verified_at == null) {
             abort(403, 'Forbidden');
         }
         return $next($request);

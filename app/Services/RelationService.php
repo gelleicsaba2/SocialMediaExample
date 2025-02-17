@@ -62,7 +62,7 @@ class RelationService
                 ->get()
             ->concat(
                 DB::table('users')->where('users.id', '<>', $userId)
-                ->join('relations AS relations', 'relations.friend_id', '=', 'users.id')
+                ->join('relations', 'relations.friend_id', '=', 'users.id')
                 ->where('relations.accepted', true)
                 ->select('users.*')
                 ->get()

@@ -21,6 +21,9 @@ class DashboardController extends Controller
 
     public function index(Request $request): View
     {
+        if (Auth::user()->email_verified_at == null) {
+            abort(403, 'Forbidden');
+        }
 
         $unverifiedUsers =
             Auth::user()->is_admin ?

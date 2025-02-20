@@ -54,19 +54,19 @@ class RelationService
 
     public function friends(int $userId)
     {
-        return
-            DB::table('users')->where('users.id', '<>', $userId)
-                ->join('relations', 'relations.user_id', '=', 'users.id')
-                ->where('relations.accepted', true)
-                ->select('users.*')
-                ->get()
-            ->concat(
-                DB::table('users')->where('users.id', '<>', $userId)
-                ->join('relations', 'relations.friend_id', '=', 'users.id')
-                ->where('relations.accepted', true)
-                ->select('users.*')
-                ->get()
-            );
+        $relations = Relation::where(function ($query) use ($userId) {
+                $query
+                    ->where('user_id', $userId)
+                    ->orWhere('friend_id', $userId);
+            })
+            ->where('accepted', true)
+            ->get();
+        $users = collect([]);
+        foreach ($relations as $relation) {
+            $users->push($relation->user_id != $userId ?
+                $relation->user : $relation->friend);
+        }
+        return $users;
     }
 
     public function markAsFriend(int $userId, int $friendId): void
@@ -76,16 +76,21 @@ class RelationService
 
     public function delete(int $userId, int $friendId): void
     {
-        DB::statement("DELETE FROM `relations`
-            WHERE (user_id=$userId AND friend_id=$friendId)
-            OR (user_id=$friendId AND friend_id=$userId)");
+        Relation::where(
+            function ($query) use ($userId, $friendId) {
+                $query->where('user_id',$userId)
+                    ->where('friend_id', $friendId);
+            })
+            ->orWhere(function ($query) use ($userId, $friendId) {
+                $query->where('friend_id',$userId)
+                    ->where('user_id', $friendId);
+            })
+            ->delete();
     }
 
     public function refuse(int $userId, int $friendId): void
     {
-        DB::statement("DELETE FROM `relations`
-            WHERE (user_id=$userId AND friend_id=$friendId)
-            OR (user_id=$friendId AND friend_id=$userId)");
+        $this->delete($userId, $friendId);
     }
 
     public function sendNotification(int $user_id, int $friend_id, string $message): void

@@ -29,14 +29,6 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if (!$user->hasVerifiedEmail()) {
-            Auth::logout();
-
-            throw ValidationException::withMessages([
-                'email' => __('Your email address is not verified.'),
-            ]);
-        }
-
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));

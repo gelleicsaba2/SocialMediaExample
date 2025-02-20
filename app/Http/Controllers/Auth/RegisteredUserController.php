@@ -41,7 +41,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $request->session()->flash('message', 'Your account has been created. Please verify later!');
-        return redirect('/');
+        event(new Registered($user));
+        Auth::login($user);
+        return redirect(route('dashboard', absolute: false));
+
     }
 }

@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
     public function index(Request $request): View
     {
-        if (Auth::user()->email_verified_at == null) {
+        if (! Auth::user()) {
             abort(403, 'Forbidden');
         }
 
@@ -31,7 +31,7 @@ class DashboardController extends Controller
                 : [];
 
         $acceptableFriends =
-                (! Auth::user()->is_admin) ?
+                (! Auth::user()->is_admin) && Auth::user()->hasVerifiedEmail() ?
                     $this->relationService->acceptable(Auth::user()->id)
                     : [];
 

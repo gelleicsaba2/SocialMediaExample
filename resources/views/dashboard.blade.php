@@ -82,9 +82,29 @@
                                 </div>
                             </div>
                         @else
-                            <div class="mb-4 font-bold text-lg text-green-600">
-                                {{ __('No friends to check!') }}
-                            </div>
+                            @if (Auth::user()->hasVerifiedEmail())
+                                <div class="mb-4 font-bold text-lg text-green-600">
+                                    {{ __('No friends to check!') }}
+                                </div>
+                            @else
+                                <div class="mb-4 font-bold text-lg text-green-600">
+                                    {{ __('You are not verified yet! Please wait!') }}
+                                    <a
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition
+                                        hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]
+                                        dark:text-white dark:hover:text-white/80
+                                        dark:focus-visible:ring-white"
+                                        href="/dashboard">
+                                        {{ __('CHECK') }}
+                                    </a>
+                                    <script>
+                                        setTimeout(() => {
+                                            window.location.reload();
+                                        }, 10000);
+                                    </script>
+                                </div>
+                            @endif
+
                         @endif
 
 
